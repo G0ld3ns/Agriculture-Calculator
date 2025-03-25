@@ -89,23 +89,83 @@ public class Main extends Application {
                 
                     if ("Corn".equals(cropType)) 
                     {
-                        result = landSize * 7;
-                        result2 = landSize * 0.25;
-                       
-
-                        String formattedCorn = String.format("%.2f", result);
-                        String formattedCornSeed = String.format("%.2f", result2);
-
-                        resultLabel.setText("Estimated tons of seeds needed for your fields: " + formattedCornSeed + " Tons\n" + "Estimated tons of crop output per year: " + formattedCorn);
-
+                        if ("Corn".equals(cropType)) {
+                            result = landSize * 7;
+                            result2 = landSize * 0.25;
+                        
+                            double seedCost = result2 * 120;
+                            double cropValue = result * 180;
+                            double fertilizerCost = landSize * 300;
+                            double profit = cropValue - fertilizerCost - seedCost;
+                        
+                            String formattedCorn = String.format("%.2f", result);
+                            String formattedCornSeed = String.format("%.2f", result2);
+                            String formattedSeedCost = String.format("%.2f", seedCost);
+                            String formattedCropValue = String.format("%.2f", cropValue);
+                            String formattedFertilizerCost = String.format("%.2f", fertilizerCost);
+                            String profitCalc = String.format("%.2f", profit);
+                        
+                            resultLabel.setText(
+                                "Seed needed: " + formattedCornSeed + " tons\n" +
+                                "Estimated seed cost: €" + formattedSeedCost + "\n" +
+                                "Estimated crop output: " + formattedCorn + " tons\n" +
+                                "Estimated crop value: €" + formattedCropValue + "\n" +
+                                "Fertilizer cost: €" + formattedFertilizerCost + "\n" +
+                                "Estimated profit by last year: " + profitCalc 
+                            );
+                        }
+                        
                     } 
                     else if ("Wheat".equals(cropType)) 
                     {
                         result = landSize * 10;
+                        result2 = landSize * 0.3;
+                        double seedCost = result2 * 140;
+                        double cropValue = result * 220;
+                        double fertilizerCost = landSize * 280;
+                        double profit = cropValue - fertilizerCost - seedCost;
+                    
+                        String formattedCorn = String.format("%.2f", result);
+                        String formattedCornSeed = String.format("%.2f", result2);
+                        String formattedSeedCost = String.format("%.2f", seedCost);
+                        String formattedCropValue = String.format("%.2f", cropValue);
+                        String formattedFertilizerCost = String.format("%.2f", fertilizerCost);
+                        String profitCalc = String.format("%.2f", profit);
+                    
+                        resultLabel.setText(
+                            "Seed needed: " + formattedCornSeed + " tons\n" +
+                            "Estimated seed cost: €" + formattedSeedCost + "\n" +
+                            "Estimated crop output: " + formattedCorn + " tons\n" +
+                            "Estimated crop value: €" + formattedCropValue + "\n" +
+                            "Fertilizer cost: €" + formattedFertilizerCost + "\n" +
+                            "Estimated profit by last year: " + profitCalc 
+                        );
+                        
                     } 
                     else if ("Canola".equals(cropType)) 
                     {
                         result = landSize * 3.5;
+                        result2 = landSize * 0.2;
+                        double seedCost = result2 * 200;
+                        double cropValue = result * 500;
+                        double fertilizerCost = landSize * 320;
+                        double profit = cropValue - fertilizerCost - seedCost;
+                        String profitCalc = String.format("%.2f", profit);
+                    
+                        String formattedCorn = String.format("%.2f", result);
+                        String formattedCornSeed = String.format("%.2f", result2);
+                        String formattedSeedCost = String.format("%.2f", seedCost);
+                        String formattedCropValue = String.format("%.2f", cropValue);
+                        String formattedFertilizerCost = String.format("%.2f", fertilizerCost);
+                    
+                        resultLabel.setText(
+                            "Seed needed: " + formattedCornSeed + " tons\n" +
+                            "Estimated seed cost: €" + formattedSeedCost + "\n" +
+                            "Estimated crop output: " + formattedCorn + " tons\n" +
+                            "Estimated crop value: €" + formattedCropValue + "\n" +
+                            "Fertilizer cost: €" + formattedFertilizerCost + "\n" +
+                            "Estimated profit by last year: " + profitCalc 
+                        );
                     } 
                     else 
                     {
