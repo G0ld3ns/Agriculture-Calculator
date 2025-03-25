@@ -12,7 +12,7 @@ public class Main extends Application {
 
         // Dropdown to select category
         ComboBox<String> categoryBox = new ComboBox<>();
-        categoryBox.getItems().addAll("Crops", "Animals", "Vehicles");
+        categoryBox.getItems().addAll("Crops", "Animals");
         categoryBox.setPromptText("Select a category");
         
         // Input fields
@@ -29,16 +29,6 @@ public class Main extends Application {
         ComboBox<String> animalBox = new ComboBox<>();
         animalBox.getItems().addAll("Cow", "Sheep", "Pig");
         animalBox.setPromptText("Select animal type");
-
-        TextField inputFieldVehicles = new TextField();
-        inputFieldVehicles.setPromptText("Enter price of vehicle");
-
-        TextField inputVehicleHa = new TextField();
-        inputVehicleHa.setPromptText("Enter land size (Ha)");
-
-        ComboBox<String> vehicleBox = new ComboBox<>();
-        vehicleBox.getItems().addAll("Tractor", "Harvester", "Attachment");
-        vehicleBox.setPromptText("Select vehicle type");
         
         Button calculateButton = new Button("Calculate");
         Label resultLabel = new Label("Results will appear here");
@@ -46,10 +36,9 @@ public class Main extends Application {
         // Containers for specific input fields
         VBox cropInputs = new VBox(10, cropBox, inputFieldCrops);
         VBox animalInputs = new VBox(10, animalBox, inputFieldAnimals );
-        VBox vehicleInputs = new VBox(10, vehicleBox, inputVehicleHa, inputFieldVehicles);
 
         // Main layout (proper order)
-        VBox layout = new VBox(10, label, categoryBox, cropInputs, animalInputs, vehicleInputs, calculateButton, resultLabel);
+        VBox layout = new VBox(10, label, categoryBox, cropInputs, animalInputs, calculateButton, resultLabel);
 
         // Initially hide all specific input areas but keep them in the layout
         cropInputs.setVisible(false);
@@ -57,9 +46,6 @@ public class Main extends Application {
 
         animalInputs.setVisible(false);
         animalInputs.setManaged(false);
-
-        vehicleInputs.setVisible(false);
-        vehicleInputs.setManaged(false);
 
         // Show specific input fields based on the selected category
         categoryBox.setOnAction(e -> {
@@ -70,9 +56,6 @@ public class Main extends Application {
 
             animalInputs.setVisible("Animals".equals(category));
             animalInputs.setManaged("Animals".equals(category));
-
-            vehicleInputs.setVisible("Vehicles".equals(category));
-            vehicleInputs.setManaged("Vehicles".equals(category));
         });
 
         // Calculation logic
@@ -206,17 +189,13 @@ public class Main extends Application {
                     }
                     
                 }
-                else if ("Vehicles".equals(category)) 
-                {
-                    double vehiclePrice = Double.parseDouble(inputFieldVehicles.getText());
-                    result = vehiclePrice / 12; // Example: Payback in 12 months
-                }
+                
             } catch (NumberFormatException ex) {
                 resultLabel.setText("Please enter valid numeric values.");
             }
         });
 
-        Scene scene = new Scene(layout, 400, 300);
+        Scene scene = new Scene(layout, 400, 400);
         scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
 
         primaryStage.setTitle("Agricultural Investment Calculator");
